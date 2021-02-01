@@ -13,7 +13,8 @@ phases:
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
       - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
       - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
-      - echo $CODEBUILD_SOURCE_VERSION
+      - PRNUMBER=$(echo "$CODEBUILD_SOURCE_VERSION" | tr -dc '0-9')
+      - echo $PRNUMBER
   build:
     commands:
       - mvn test     
