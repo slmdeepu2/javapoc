@@ -17,7 +17,8 @@ phases:
       - TAG=$(echo "$CODEBUILD_WEBHOOK_BASE_REF")
       - echo $PRNUMBER
       - echo Installing codebuild-extras...
-      - bash -c "$(curl -fsSL https://raw.githubusercontent.com/thii/aws-codebuild-extras/master/install)"
+      - bash -c "$(curl -fsSL https://raw.githubusercontent.com/thii/aws-codebuild-extras/master/install)" > extra_vars.txt
+      - cat extra_vars.txt
   build:
     commands:
       - mvn test     
