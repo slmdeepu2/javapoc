@@ -14,11 +14,9 @@ phases:
       - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
       - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
       - PRNUMBER=$(echo "$CODEBUILD_SOURCE_VERSION" | tr -dc '0-9')
-      - echo $CODEBUILD_WEBHOOK_BASE_REF
-      - echo $CODEBUILD_WEBHOOK_HEAD_REF
-      - echo Installing codebuild-extras...
-      - bash -c "$(curl -fsSL https://raw.githubusercontent.com/thii/aws-codebuild-extras/master/install)" > extra_vars.txt
-      - SOURCE_BRANCH=$(grep "CODEBUILD_GIT_BRANCH" extra_vars.txt  | awk '{print $4}')
+      - SOURCE_BRANCH=$(echo "$CODEBUILD_WEBHOOK_BASE_REF" | sed s/"refs\/heads\/"//)
+      - BASE_BRANCH=$(echo "$CODEBUILD_WEBHOOK_HEAD_REF" | sed s/"refs\/heads\/"//)
+      - echo $BASE_BRANCH
       - echo $SOURCE_BRANCH
   build:
     commands:
