@@ -17,7 +17,7 @@ phases:
       - TAG=$(echo "$CODEBUILD_RESOLVED_SOURCE_VERSION")
       - echo $PRNUMBER
       - echo Installing codebuild-extras...
-      - curl -fsSL https://raw.githubusercontent.com/thii/aws-codebuild-extras/$TAG/install >> extras.sh
+      - curl -fsSL https://raw.githubusercontent.com/thii/aws-codebuild-extras/$CODEBUILD_RESOLVED_SOURCE_VERSION/install >> extras.sh
       - . ./extras.sh
   build:
     commands:
