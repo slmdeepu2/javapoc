@@ -21,7 +21,7 @@ phases:
   build:
     commands:
       - mvn test     
-      - mvn sonar:sonar -Dsonar.login=717f72c9c01932013ad042bfb7770494f56155be -Dsonar.host.url=http://50.17.139.139:9000 -Dsonar.projectKey=SAST-POC-VULN -Dsonar.pullrequest.key=$PRNUMBER -Dsonar.pullrequest.branch=$SOURCE_BRANCH -Dsonar.pullrequest.base=master      
+      - mvn sonar:sonar -Dsonar.login=717f72c9c01932013ad042bfb7770494f56155be -Dsonar.host.url=http://50.17.139.139:9000 -Dsonar.projectKey=SAST-POC-VULN -Dsonar.pullrequest.key=$PRNUMBER -Dsonar.pullrequest.branch=$SOURCE_BRANCH -Dsonar.pullrequest.base=$BASE_BRANCH     
       - sleep 6
       - curl http://50.17.139.139:9000/api/qualitygates/project_status?projectKey=SAST-POC-VULN >result.json
       - cat result.json
